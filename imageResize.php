@@ -9,7 +9,7 @@ class imageResize {
             $image->thumbnailImage($newWidth, $newHeight);
             $image->writeImage($destinationPath);
             unset($image);
-        } catch (\Exception $e) {
+        } catch (\ImagickException $e) {
             echo 'Exception: ',  $e->getMessage(), "\n";
         }
     }
