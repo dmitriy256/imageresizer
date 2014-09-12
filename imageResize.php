@@ -7,8 +7,10 @@ class imageResize {
         try {
             $image = new \Imagick($sourcePath);
             $image->thumbnailImage($newWidth, $newHeight);
-            $image->writeImage($destinationPath);
-            unset($image);
+            if (!$image->setImageFormat("jpeg")) throw new Exception();
+            $a = $image->getImageBlob();
+            $image = null;
+            return $a;
         } catch (\ImagickException $e) {
             echo 'Exception: ',  $e->getMessage(), "\n";
         }
